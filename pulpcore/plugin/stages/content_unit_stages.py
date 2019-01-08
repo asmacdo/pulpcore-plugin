@@ -116,6 +116,7 @@ class ContentUnitSaver(Stage):
                             with transaction.atomic():
                                 declarative_content.content.save()
                         except IntegrityError:
+                            declarative_content.content.pk = None
                             declarative_content.content = \
                                 declarative_content.content.__class__.objects.get(
                                     declarative_content.content.q())
